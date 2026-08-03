@@ -1,0 +1,15 @@
+{
+  "name": "url_checker",
+  "version": "1.0.0",
+  "description": "A basic TypeScript browser application that validates URL formats on the client side and checks their existence asynchronously using a throttled mock server.",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  },
+  "keywords": [],
+  "type": "commonjs"
+}
