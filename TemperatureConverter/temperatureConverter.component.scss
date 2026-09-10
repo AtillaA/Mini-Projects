@@ -1,0 +1,31 @@
+:host {
+    display: block;
+}
+
+section {
+    width: 420px;
+    margin-bottom: 18px;
+}
+
+label {
+    font-weight: 700;
+    font-size: 15px;
+    color: #1f1f1f;
+}
+
+input.large {
+    width: 260px;
+    height: 34px;
+    padding: 0 10px;
+    font-size: 15px;
+    color: #1f1f1f;
+    background: #e6e6e1;
+    border: 1px solid #d2d2cc;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+input.large:focus {
+    outline: none;
+    border-color: #9fb89f;
+}

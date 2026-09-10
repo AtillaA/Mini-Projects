@@ -1,0 +1,29 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #efefe9;
+    color: #1f1f1f;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.layout-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.layout-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}

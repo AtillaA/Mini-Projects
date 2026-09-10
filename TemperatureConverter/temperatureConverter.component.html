@@ -1,0 +1,19 @@
+<div class="layout-column align-items-center mt-50">
+    <section class="layout-row align-items-center justify-content-between">
+        <label>Celcius: </label>
+        <input type="number" class="large" data-test-id="celcius-input"
+               [(ngModel)]="celcius" (ngModelChange)="onCelciusChange($event)">
+    </section>
+
+    <section class="layout-row align-items-center justify-content-between">
+        <label>Fahrenheit: </label>
+        <input type="number" class="large" data-test-id="fahrenheit-input"
+               [(ngModel)]="fahrenheit" (ngModelChange)="onFahrenheitChange($event)">
+    </section>
+
+    <section class="layout-row align-items-center justify-content-between">
+        <label>Kelvin: </label>
+        <input type="number" class="large" data-test-id="kelvin-input"
+               [(ngModel)]="kelvin" (ngModelChange)="onKelvinChange($event)">
+    </section>
+</div>
