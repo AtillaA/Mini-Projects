@@ -1,0 +1,28 @@
+# Dependency directories
+node_modules/
+.pnpm-store/
+.yarn/
+
+# IDE/Editor configuration folders
+.vscode/
+.idea/
+.vs/
+.settings/
+.project
+.classpath
+*.sublime-project
+*.sublime-workspace
+
+# OS metadata files
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# TypeScript build cache
+*.tsbuildinfo
+.angular/
+out-tsc/
+dist/
