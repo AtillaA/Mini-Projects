@@ -13,8 +13,8 @@ A basic TypeScript browser application that validates URL formats on the client 
 
 ## Development Environment
 --------------------------
-- Node.js Version: v24.18.0
-- TypeScript Version: 7.0.2
+- Node.js v24.18.0 (npm 12.0.1)
+- TypeScript 5.8.3
 
 
 ## Getting Started
