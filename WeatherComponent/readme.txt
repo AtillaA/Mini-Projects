@@ -1,8 +1,11 @@
-Weather Component
------------------
-Create a Weather component.
+# Weather Component
+-------------------
+Weather component application. Check current weather in a quried city.
 
-The component must have the following functionalities:
+
+## Features:
+------------
+The component has the following functionalities:
     - An array of objects is passed as a prop to the component, where each object is a weather record for a single city. The object has 4 properties:
         • name: The name of the city. [STRING]
         • temperature: The temperature in the city. [STRING]
@@ -29,13 +32,13 @@ The following data-test-id attributes are required in the component:
 Do not change the above data-test-id attributes for component check.
 
 
-Setup Requirements:
--------------------
+## Development Environment
+--------------------------
 Node 18.19+/20.11+/22+
 npm
 
 
-To run:
-
-npm install       # 847 packages
-npm start         # dev server at http://localhost:4200
+## Getting Started
+------------------
+1. Install dependencies (npm install - 847 packages)
+2. Start the server Compile TypeScript (npm start - dev server at http://localhost:4200)
