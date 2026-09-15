@@ -10,8 +10,8 @@
                 <div class="card-title" data-test-id="output-name">{{weather.name}}</div>
                 <div data-test-id="weather-details" class="card-text pt-10 layout-row justify-content-between">
                     <div class="mt-20 outlined">
-                        <button class="icon-only mx-2">
-                            <i class="material-icons">wb_sunny</i>
+                        <button class="icon-only mx-2" [title]="weather.condition" [attr.aria-label]="weather.condition">
+                            <i class="material-icons">{{weather.icon}}</i>
                         </button>
                         <span data-test-id="output-temperature" class="temperature">{{weather.temperature}}</span>     
                     </div>

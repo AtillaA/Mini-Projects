@@ -171,4 +171,8 @@ export interface data {
     temperature: string;
     wind: string;
     humidity: string;
+    /** WeatherAPI's description, e.g. "Light rain" */
+    condition: string;
+    /** Material Icons ligature name matching the condition */
+    icon: string;
 }

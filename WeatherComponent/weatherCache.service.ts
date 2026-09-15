@@ -131,6 +131,7 @@ export class WeatherCacheService {
         }
     }
 
+    /** records cached before condition/icon existed fail this check and are re-fetched */
     private isValidEntry(entry: CacheEntry): boolean {
         return (
             !!entry &&
@@ -139,7 +140,9 @@ export class WeatherCacheService {
             typeof entry.record.name === 'string' &&
             typeof entry.record.temperature === 'string' &&
             typeof entry.record.wind === 'string' &&
-            typeof entry.record.humidity === 'string'
+            typeof entry.record.humidity === 'string' &&
+            typeof entry.record.condition === 'string' &&
+            typeof entry.record.icon === 'string'
         );
     }
 }

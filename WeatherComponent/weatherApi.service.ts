@@ -4,6 +4,7 @@ import { Observable, catchError, map, throwError } from 'rxjs';
 
 import { environment } from './environment';
 import type { data } from './weatherDetails.component';
+import { weatherIcon } from './weatherIcon';
 
 /** Shape of the parts of GET /v1/current.json used */
 interface CurrentWeatherResponse {
@@ -14,6 +15,8 @@ interface CurrentWeatherResponse {
         wind_kph: number;
         wind_mph: number;
         humidity: number;
+        is_day: number; // 1 = daytime, 0 = night
+        condition: { text: string; code: number };
     };
 }
 
@@ -84,7 +87,9 @@ export class WeatherApiService {
             wind: metric
                 ? `${Math.round(current.wind_kph)}Kmph`
                 : `${Math.round(current.wind_mph)}Mph`,
-            humidity: `${current.humidity}%`
+            humidity: `${current.humidity}%`,
+            condition: current.condition.text,
+            icon: weatherIcon(current.condition.code, current.is_day === 1)
         };
     }
 
