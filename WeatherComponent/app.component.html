@@ -1,0 +1,7 @@
+<nav class="navbar">
+    <h1 class="navbar-title">Weather Details</h1>
+</nav>
+
+<main class="app-content">
+    <weather-details [weatherData]="weatherData" (weatherLoaded)="addRecord($event)"></weather-details>
+</main>

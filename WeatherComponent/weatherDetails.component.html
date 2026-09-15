@@ -1,0 +1,33 @@
+<div class="weather-data layout-column align-items-center mt-50">
+    <section class="layout-row align-items-center justify-content-center">
+        <label>Enter City: </label>
+        <input type="text" class="large ml-30" placeholder="Seattle" data-test-id="app-input"
+               #cityInput (input)="search(cityInput.value)" (change)="search(cityInput.value)"/>
+    </section>
+    <section class="mt-20 layout-row align-items-center justify-content-center">
+        <div class="card-outlined" *ngIf="searchTerm">
+            <ng-container *ngIf="result as weather">
+                <div class="card-title" data-test-id="output-name">{{weather.name}}</div>
+                <div data-test-id="weather-details" class="card-text pt-10 layout-row justify-content-between">
+                    <div class="mt-20 outlined">
+                        <button class="icon-only mx-2">
+                            <i class="material-icons">wb_sunny</i>
+                        </button>
+                        <span data-test-id="output-temperature" class="temperature">{{weather.temperature}}</span>     
+                    </div>
+                    <div class="mr-15 mb-15">
+                        <div data-test-id="output-wind" class="mt-20">
+                            Wind: {{weather.wind}}
+                        </div>
+                        <div data-test-id="output-humidity" class="mt-20">
+                            Humidity: {{weather.humidity}}
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <div data-test-id="loading" class="card-text status" *ngIf="status === 'loading'">Loading weather…</div>
+            <div data-test-id="no-results" class="card-text" *ngIf="status === 'unknown'">No Results Found</div>
+            <div data-test-id="error" class="card-text status error" *ngIf="status === 'error'">{{errorMessage}}</div>
+        </div>
+    </section>
+</div>
