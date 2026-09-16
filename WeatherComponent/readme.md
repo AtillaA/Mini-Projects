@@ -1,6 +1,6 @@
 # Weather Component
 -------------------
-Weather component application. Check current weather in a quried city.
+Weather component application. Checks current weather in a queried city.
 
 
 ## Features:
@@ -20,6 +20,9 @@ Failures are translated into distinct user-facing states rather than raw errors:
 
 Successful fetches go through a cache layer that keeps records in an in-memory map mirrored into localStorage, so a repeat search for the same city within an hour is redrawn from the cache and costs no API call, and the cache survives a page reload; entries are filed under both the typed text and the canonical name WeatherAPI returns, expired or malformed ones are discarded whenever they're read or restored, every storage access is written defensively so that a blocked or corrupt store degrades to an in-memory cache instead of breaking the app, and records still fresh from an earlier visit are replayed to the parent component on startup to repopulate its weather array.
 
+
+## Functionality:
+-----------------
 The component has the following functionalities:
     - An array of objects is passed as a prop to the component, where each object is a weather record for a single city. The object has 4 properties:
         • name: The name of the city. [STRING]
@@ -37,8 +40,6 @@ The component has the following functionalities:
     - At component render, since nothing is typed, does not render the above two <div> elements ("weather-details" and "no-results").
 
 
-
-
 ## Development Environment
 --------------------------
 Node 18.19+/20.11+/22+
@@ -48,4 +49,4 @@ npm
 ## Getting Started
 ------------------
 1. Install dependencies (npm install - 847 packages)
-2. Start the server Compile TypeScript (npm start - dev server at http://localhost:4200)
+2. Start the server (npm start - dev server at http://localhost:4200)
