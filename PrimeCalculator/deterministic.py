@@ -57,7 +57,7 @@ AKS Test (Agrawal–Kayal–Saxena)
     Efficiency: Time Complexity: O((logN)^6) | Space Complexity: O(rlogN)
 """
 def perfect_power(n: int) -> bool:
-    """ Step 1: Check if [ n = a^b ] for integers a > 1 and b > 1 """
+    """ check if [ n = a^b ] for integers a > 1 and b > 1 """
     limit = int(math.log2(n)) + 1
 
     for b in range(2, limit):
@@ -67,7 +67,7 @@ def perfect_power(n: int) -> bool:
     return False
 
 def find_r(n: int) -> int:
-    """ Step 2: Find the smallest [ r ] s.t. order of n modulo r > log2(n)^2 """
+    """ find the smallest r such that order of n modulo r > log2(n)^2 """
     max_log = int(math.log2(n)) ** 2
     r = 2
 
@@ -91,7 +91,7 @@ def find_r(n: int) -> int:
         r += 1
 
 def poly_multiply(p1: list, p2: list, r: int, mod: int) -> list:
-    """ Multiplies two polynomials modulo (X^r - 1) and modulo 'mod' """
+    """ multiplies two polynomials modulo (X^r - 1) and modulo 'mod' """
     res = [0] * r
 
     for i, c1 in enumerate(p1):
@@ -104,7 +104,7 @@ def poly_multiply(p1: list, p2: list, r: int, mod: int) -> list:
     return res
 
 def poly_power(poly: list, power: int, r: int, mod: int) -> list:
-    """ Computes poly^power modulo (X^r - 1) and modulo 'mod' using binary exponentiation """
+    """ computes poly^power modulo (X^r - 1) and modulo 'mod' using binary exponentiation """
     res = [1] + [0] * (r - 1)
     base = poly[:]
 
@@ -117,7 +117,7 @@ def poly_power(poly: list, power: int, r: int, mod: int) -> list:
     return res
 
 def aks_test(n: int) -> bool:
-    """Returns True if n is prime, False otherwise using the AKS algorithm."""
+    """ returns True if n is prime, False otherwise using the AKS algorithm """
     if n <= 1: return False
 
     if n <= 3: return True
