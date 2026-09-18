@@ -3,7 +3,8 @@ import math
 """
 Deterministic algorithms for detecting whether a given positive integer is prime
 
-All algorithms below yield a binary value, there are no false positives or false negatives
+These algorithms prove definitively whether a number is prime or composite, there are no false positives or false negatives
+They can be computationally heavy for massive numbers
 
 Three major tests are: Trial Division Test, AKS Test, Lukas-Lehmer Test
 """
