@@ -19,8 +19,6 @@ Trial Division Test:
     Checks every integer starting from 2 up to sqrt{N}
     An optimized version checks 2 and 3 first, then skips even numbers and multiples of 3 by stepping through numbers in increments of 6 (checking 6k ± 1)
     Perfectly deterministic and highly efficient for small numbers, but completely unusable for massive cryptographic keys due to its exponential time complexity
-    
-    Efficiency: Time Complexity: O(sqrt{N}) | Space Complexity: O(1)
 """
 def trial_division_test(n: int) -> bool:
     """Returns True if n is prime, False otherwise using optimized Trial Division."""
@@ -53,8 +51,6 @@ AKS Test (Agrawal–Kayal–Saxena)
     In practice, the overhead constants are so massive that it is far slower than probabilistic tests for everyday calculations
     
     Note: Due to the complexity of finding the bounds (r) and computing large polynomial coefficients, below is a preliminary implementation of the standard algorithm
-    
-    Efficiency: Time Complexity: O((logN)^6) | Space Complexity: O(rlogN)
 """
 def perfect_power(n: int) -> bool:
     """ check if [ n = a^b ] for integers a > 1 and b > 1 """
@@ -167,8 +163,6 @@ Lucas-Lehmer Test
     Incredibly efficient because it leverages fast binary bit-shifting and squaring operations
     Core algorithm used by GIMPS (Great Internet Mersenne Prime Search) to find the largest known primes in the universe
     Main constraint is that it cannot test any numbers that aren't formatted as (2^P - 1)
-    
-    Efficiency: Time Complexity: O((P^2)logPlogP) | Space Complexity: O(P)
 """
 def lucas_lehmer_test(p: int) -> bool:
     """
