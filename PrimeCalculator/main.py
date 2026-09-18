@@ -1,0 +1,10 @@
+#from sieve import eratosthenes
+
+
+def main():
+    #eratosthenes(100)
+    return 0
+
+
+if __name__ == "__main__":
+    main()
