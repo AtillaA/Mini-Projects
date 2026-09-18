@@ -14,11 +14,10 @@ Three major tests are: Trial Division Test, AKS Test, Lukas-Lehmer Test
 """
 Trial Division Test:
     Most straightforward, brute-force approach to primality testing
+    
     If a number N is composite, it must have a factor less than or equal to its square root
     Checks every integer starting from 2 up to sqrt{N}
-    
-    An optimized version checks 2 and 3 first, then skips even numbers and multiples of 3 by stepping through numbers in increments of 6 (checking \(6k \pm 1\))
-    
+    An optimized version checks 2 and 3 first, then skips even numbers and multiples of 3 by stepping through numbers in increments of 6 (checking 6k ± 1)
     Perfectly deterministic and highly efficient for small numbers, but completely unusable for massive cryptographic keys due to its exponential time complexity
     
     Efficiency: Time Complexity: O(sqrt{N}) | Space Complexity: O(1)
@@ -46,13 +45,13 @@ def trial_division_test(n: int) -> bool:
 """
 AKS Test (Agrawal–Kayal–Saxena)
     First algorithm that proved primality can be done in polynomial time without relying on unproven mathematical conjectures
-    
     Generalizes Fermat's Little Theorem using polynomial rings
+    
     States that N is prime iff the polynomial congruence [ (X+a)^n ≡ X^n + a mod{N} ] holds
     Since expanding (X+a)^n creates too many terms, the algorithm evaluates both sides modulo a carefully chosen small polynomial (X^r - 1)
     Tests the congruence for a specific range of values for (a)
-    
     In practice, the overhead constants are so massive that it is far slower than probabilistic tests for everyday calculations
+    
     Note: Due to the complexity of finding the bounds (r) and computing large polynomial coefficients, below is a preliminary implementation of the standard algorithm
     
     Efficiency: Time Complexity: O((logN)^6) | Space Complexity: O(rlogN)
@@ -162,9 +161,9 @@ def aks_test(n: int) -> bool:
 """
 Lucas-Lehmer Test
     Specialized, lightning-fast deterministic test used exclusively for Mersenne numbers (numbers that take the form [ M_p = 2^P - 1 ] where P is an odd prime)
+    
     Generates a sequence where the first term (S_0 = 4), and every subsequent term is defined by the recurrence relation (S_i = (S_{i-1}^2 - 2) mod{M_p})
     If the (P-2)-th term of this sequence (S_{p-2}) is exactly 0, then (M_{p}) is a prime number
-    
     Incredibly efficient because it leverages fast binary bit-shifting and squaring operations
     Core algorithm used by GIMPS (Great Internet Mersenne Prime Search) to find the largest known primes in the universe
     Main constraint is that it cannot test any numbers that aren't formatted as (2^P - 1)
