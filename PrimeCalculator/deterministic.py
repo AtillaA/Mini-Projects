@@ -29,10 +29,11 @@ def trial_division_test(n: int) -> bool:
     if n <= 3:
         return True  # 2 and 3 are prime
     if n % 2 == 0 or n % 3 == 0:
-        return False  # Exclude multiples of 2 and 3
+        return False  # exclude multiples of 2 and 3
     
-    # Check factors up to the square root of n, stepping by 6
+    # check factors up to sqrt(n), stepping by 6
     limit = int(math.isqrt(n))
+
     for i in range(5, limit + 1, 6):
         if n % i == 0 or n % (i + 2) == 0:
             return False
@@ -56,8 +57,9 @@ AKS Test (Agrawal–Kayal–Saxena)
     Efficiency: Time Complexity: O((logN)^6) | Space Complexity: O(rlogN)
 """
 def perfect_power(n: int) -> bool:
-    """Step 1: Check if n = a^b for integers a > 1 and b > 1."""
+    """ Step 1: Check if [ n = a^b ] for integers a > 1 and b > 1 """
     limit = int(math.log2(n)) + 1
+
     for b in range(2, limit):
         a = round(n ** (1.0 / b))
         if a ** b == n:
@@ -65,73 +67,86 @@ def perfect_power(n: int) -> bool:
     return False
 
 def find_r(n: int) -> int:
-    """Step 2: Find the smallest r such that order of n modulo r > log2(n)^2."""
+    """ Step 2: Find the smallest [ r ] s.t. order of n modulo r > log2(n)^2 """
     max_log = int(math.log2(n)) ** 2
     r = 2
+
     while True:
         gcd = math.gcd(n, r)
+
         if gcd > 1 and gcd < n:
-            return r # Will be caught by step 3, but safe to return
+            return r # will be caught by step 3, but safe to return
             
-        # Calculate multiplicative order of n modulo r
+        # calc multiplicative order of n modulo r
         k = 1
         cur = n % r
+
         while cur > 1:
             cur = (cur * n) % r
             k += 1
+        
         if k > max_log:
             return r
+
         r += 1
 
 def poly_multiply(p1: list, p2: list, r: int, mod: int) -> list:
-    """Multiplies two polynomials modulo (X^r - 1) and modulo 'mod'."""
+    """ Multiplies two polynomials modulo (X^r - 1) and modulo 'mod' """
     res = [0] * r
+
     for i, c1 in enumerate(p1):
         if c1 == 0: continue
+
         for j, c2 in enumerate(p2):
             if c2 == 0: continue
             res[(i + j) % r] = (res[(i + j) % r] + c1 * c2) % mod
+    
     return res
 
 def poly_power(poly: list, power: int, r: int, mod: int) -> list:
-    """Computes poly^power modulo (X^r - 1) and modulo 'mod' using binary exponentiation."""
+    """ Computes poly^power modulo (X^r - 1) and modulo 'mod' using binary exponentiation """
     res = [1] + [0] * (r - 1)
     base = poly[:]
+
     while power > 0:
         if power % 2 == 1:
             res = poly_multiply(res, base, r, mod)
         base = poly_multiply(base, base, r, mod)
         power //= 2
+    
     return res
 
 def aks_test(n: int) -> bool:
     """Returns True if n is prime, False otherwise using the AKS algorithm."""
     if n <= 1: return False
+
     if n <= 3: return True
 
-    # Step 1: Check if n is a perfect power
+    # 1. check if n is a perfect power
     if perfect_power(n):
         return False
 
-    # Step 2: Find appropriate r
+    # 2. find appropriate r
     r = find_r(n)
 
-    # Step 3: If 1 < gcd(a, n) < n for some a <= r, n is composite
+    # 3. if [ 1 < gcd(a, n) < n ] for some a <= r, n is composite
     for a in range(2, r + 1):
         gcd = math.gcd(a, n)
+    
         if 1 < gcd < n:
             return False
-        if n <= a: # If n <= r and passed checks, it's prime
+        if n <= a: # if n <= r and passed checks, it's prime
             return True
 
-    # Step 4: Check polynomial congruence
+    # 4. check polynomial congruence
     # (X + a)^n == X^n + a (mod X^r - 1, n)
     limit = int(math.sqrt(r - 1) * math.log2(n))
+
     for a in range(1, limit + 1):
-        # Left hand side: (X + a)^n
+        # left hand side: (X + a)^n
         poly_lhs = poly_power([a, 1] + [0]*(r-2), n, r, n)
         
-        # Right hand side: X^n + a mod (X^r - 1)
+        # right hand side: X^n + a mod (X^r - 1)
         poly_rhs = [0] * r
         poly_rhs[0] = a % n
         poly_rhs[n % r] = (poly_rhs[n % r] + 1) % n
@@ -157,17 +172,17 @@ Lucas-Lehmer Test
 """
 def lucas_lehmer_test(p: int) -> bool:
     """
-    Tests if the Mersenne number M_p = 2^p - 1 is prime.
-    p must be an odd prime number itself for M_p to have a chance at being prime.
+    tests if the Mersenne number M_p = 2^p - 1 is prime.
+    p must be an odd prime number
     """
     if p == 2:
         return True # M_2 = 2^2 - 1 = 3 (Prime)
     
-    # Initial setup
-    m_p = (1 << p) - 1 # Calculates 2^p - 1 using fast bitwise shift
+    # setup
+    m_p = (1 << p) - 1 # calc 2^p - 1 using fast bitwise shift
     s = 4
     
-    # Run the sequence sequence p - 2 times
+    # run the sequence p - 2 times
     for _ in range(p - 2):
         s = (s * s - 2) % m_p
         
