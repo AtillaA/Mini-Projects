@@ -1,18 +1,7 @@
 """
-Sieve algorithms for finding all prime numbers up to a specific limit (N)
-Instead of testing each number individually, they work by systematically ruling out composite numbers
-
-Three major prime sieves are: Eratosthenes, Sundaram, Atkin
-"""
-
-# -------------------------------------------
-
-"""
 Sieve of Eratosthenes:
     The oldest and most intuitive sieve algorithm
     Works on the principle that any multiple of a prime number must be a composite number
-
-    Efficiency: Time Complexity: O(NloglogN) | Space Complexity: O(N)
 """
 def sieve_of_eratosthenes(n):
   primes = [True] * (n + 1) # assume numbers 2 to n are prime
@@ -34,8 +23,6 @@ Sieve of Sundaram:
 
     Utilizes an algebraic formula to identify numbers of the form (2k + 1) that are composite
     If an int K can be represented as (K = i + j + 2ij) where (1 <= i <= j), then (2K + 1) is composite
-
-    Efficiency: Time Complexity: O(NlogN) | Space Complexity: O(N)
 """
 def sieve_of_sundaram(n):
    k = (n - 1) // 2 # largest index for odd primes
@@ -57,8 +44,6 @@ Sieve of Atkin:
     A modern, highly optimized algorithm
     Utilizes advanced number theory
     Instead of marking multiples, checks the remainders of numbers modulo 60 and counts the number of integer solutions to specific quadratic equations
-
-    Efficiency: Time Complexity: O(N / loglogN) | Space Complexity: O(N^{0.5 + o(1)})
 """
 def sieve_of_atkin(limit):
    primes = [False] * (limit + 1) # assume all numbers are composite
