@@ -1,17 +1,6 @@
 import random
 import math
 
-"""
-Probabilistic algorithms for detecting whether a given positive integer is prime
-
-These algorithms can determine if a number is composite with 100% certainty
-If they yield that a number is prime, there is a micro-fractional chance that it might be composite (a "pseudoprime")
-Running the test multiple times reduces this error margin to essentially zero
-
-Three major tests are: Fermat Test, Miller-Rabin Test, Baillie-PSW Test
-"""
-
-# -------------------------------------------
 
 """
 Fermat Test:
