@@ -3,7 +3,7 @@ class Solution {
         int i = 0;
 
         // Ignore leading whitespaces
-        while (i < s.length() && s.charAt(i) == ' ') { i++; }
+        //while (i < s.length() && s.charAt(i) == ' ') { i++; }
 
         int sign = 1;
 
