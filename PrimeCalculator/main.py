@@ -3,10 +3,6 @@ from deterministic import trial_division_test, aks_test, lucas_lehmer_test
 from probabilistic import fermat_test, miller_rabin_test, baillie_psw_test
 
 
-"""
-Prime Number Calculator:
-    Check primality of a given input, or list the prime numbers up to that input
-"""
 def main():
     print("\nPRIME NUMBER CALCULATOR")
     print("-----------------------")
@@ -17,34 +13,46 @@ def main():
         print("2. Print the list of prime integers up to a positive integer.")
         print("3. Exit.")
 
-        user_input = input("\nSelection: ").strip()
+        option_input = input("\nSelection: ").strip()
 
         # handle exit immediately
-        if user_input == "4":
-            print("\nExiting program.")
+        if option_input == "3":
+            print("Exiting program.")
             break
 
-        # check out-of-bounds/non-digit inputs
-        if not user_input.isdigit() or user_input not in ["1", "2"]:
-            print("\nInvalid input, make a valid selection.\n")
+        # check input: 3 options, flag 1 for single or multiple primes
+        if not input_checker(option_input, 3, 1):
+            print("\nInvalid option input, make a valid selection.\n")
             continue
-
-        # process valid choices
-        selection_input = int(user_input)
         
         target_input = input("\nEnter a target positive integer (n): ")
 
-        if not target_input.isdigit():
-            print("\nInvalid number input, returning to main menu...\n")
+        if not input_checker(target_input, 3, 0):
+            print("\nInvalid target input value, returning to main menu...\n")
             continue
-            
-        n = int(target_input)
 
-        if selection_input == 1 or selection_input == 2:
-            init_primecalculator(selection_input, n)
+        test_input = select_test()
+
+        if not test_input:
+            continue
+        else:
+            n = int(target_input)
+            init_primecalculator(option_input, target_input, test_input)
 
 
-def init_primecalculator(selection, n):
+def input_checker(user_input, input_range, flag):
+    # check non-digit condition to prevent crashing
+    if not user_input.isdigit():
+        return False
+
+    if flag:
+        # compare the integer against the numeric range
+        return 1 <= int(user_input) <= input_range
+    else:
+        return True
+
+
+def select_test():
     print("\nSelect the primality test method you wish to use (note that Lucas-Lehmer test will only yield Mersenne prime(s)):")
     print("\nSieves:")
     print("-------")
@@ -69,11 +77,19 @@ def init_primecalculator(selection, n):
     # handle exit immediately
     if test_input == "0":
         print("Returning to main menu...\n")
+        return False
+
+    # check input: 3 options, flag 1 for single or multiple primes
+    if not input_checker(test_input, 9, 1):
+        print("\nInvalid test selection input, returning to main menu...\n")
         return 0
 
-    # check out-of-bounds/non-digit inputs
-    if not test_input.isdigit() or not (1 <= int(test_input) <= 9):
-        print("\nInvalid test selection input, returning to main menu...\n")
+    return test_input
+
+
+def init_primecalculator(isRange, n, test_type):
+    print(f"Inputs received: Detect primality of N: {isRange} | Target Number: {n} | Type of the Test: {test_type}")
+    return 0
 
 
 def dummy_func():
