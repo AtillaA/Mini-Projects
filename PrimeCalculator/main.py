@@ -40,39 +40,45 @@ def main():
             init_primecalculator(option_input, target_input, test_input)
 
 
-def input_checker(user_input, input_range, flag):
+def input_checker(user_input, n, isRange):
     # check non-digit condition to prevent crashing
     if not user_input.isdigit():
         return False
 
-    if flag:
+    if isRange:
         # compare the integer against the numeric range
-        return 1 <= int(user_input) <= input_range
+        return 1 <= int(user_input) <= n
     else:
         return True
 
 
 def select_test():
-    print("\nSelect the primality test method you wish to use (note that Lucas-Lehmer test will only yield Mersenne prime(s)):")
-    print("\nSieves:")
-    print("-------")
-    print("1. Sieve of Eratosthenes")
-    print("2. Sieve of Sundaram")
-    print("3. Sieve of Atkin")
-    print("\nDeterministic Tests:")
-    print("----------------------")
-    print("4. Trial Division")
-    print("5. AKS")
-    print("6. Lucas-Lehmer")
-    #print(f"{"\033[9m"}Lucas-Lehmer{"\033[0m"}")
-    print("\nProbabilistic Tests:")
-    print("----------------------")
-    print("7. Fermat")
-    print("8. Miller-Rabin")
-    print("9. Baillie-PSW")
-    print("\n0. Back\n")
+    menu_text = """
+    Select the primality test method you wish to use (note that Lucas-Lehmer test will only yield Mersenne prime(s)):
 
-    test_input = input("\nSelection: ").strip()
+    Sieves:
+    -------
+    1. Sieve of Eratosthenes
+    2. Sieve of Sundaram
+    3. Sieve of Atkin
+
+    Deterministic Tests:
+    ----------------------
+    4. Trial Division
+    5. Agrawal–Kayal–Saxena
+    6. Lucas-Lehmer
+
+    Probabilistic Tests:
+    ----------------------
+    7. Fermat
+    8. Miller-Rabin
+    9. Baillie-PSW
+
+    0. Back
+    """
+    print(menu_text)
+    
+    test_input = input("Selection: ").strip()
 
     # handle exit immediately
     if test_input == "0":
@@ -88,55 +94,9 @@ def select_test():
 
 
 def init_primecalculator(isRange, n, test_type):
-    print(f"Inputs received: Detect primality of N: {isRange} | Target Number: {n} | Type of the Test: {test_type}")
+    print(f"Inputs received: Detect primality of N: {bool(int(isRange) - 1)} | Target Number: {n} | Type of the Test: {test_type}")
     return 0
 
-
-def dummy_func():
-    n = 200
-
-    # print sieves results
-    print(sieve_of_eratosthenes(n))
-    print(sieve_of_sundaram(n))
-    print(sieve_of_atkin(n))
-
-    # deterministic results
-    trial_division_list = []
-    aks_list = []
-    lucas_lehmer_list = []
-
-    # probabilistic results
-    fermat_list = []
-    miller_rabin_list = []
-    baillie_psw_list = []
-
-    for i in range(0, n):
-        # deterministic tests
-        if trial_division_test(i):
-            trial_division_list.append(i)
-        if aks_test(i):
-            aks_list.append(i)
-        if lucas_lehmer_test(i):
-            lucas_lehmer_list.append(i)
-
-        # probabilistic tests
-        if fermat_test(i):
-            fermat_list.append(i)
-        if miller_rabin_test(i):
-            miller_rabin_list.append(i)
-        if baillie_psw_test(i):
-            baillie_psw_list.append(i)
-
-    # print deterministic results
-    print(trial_division_list)
-    print(aks_list)
-    print(lucas_lehmer_list) # <--- only prints the prime mersenne numbers
-
-    # print probabilistic results
-    print(fermat_list)
-    print(miller_rabin_list)
-    print(baillie_psw_list)
-    return 0
 
 if __name__ == "__main__":
     main()
