@@ -1,39 +1,8 @@
-from sieve import sieve_of_eratosthenes, sieve_of_sundaram, sieve_of_atkin
-from deterministic import trial_division_test, aks_test, lucas_lehmer_test
-from probabilistic import fermat_test, miller_rabin_test, baillie_psw_test
-import os
+from test_handler import TestHandlers
 import subprocess
 import time
+import os
 
-
-
-class TestHandlers:
-    def handle_1(self, option, n): 
-        print("1")
-
-    def handle_2(self, option, n): 
-        print("2")
-
-    def handle_3(self, option, n): 
-        print("3")
-
-    def handle_4(self, option, n): 
-        print("4")
-
-    def handle_5(self, option, n): 
-        print("5")
-
-    def handle_6(self, option, n): 
-        print("6")
-
-    def handle_7(self, option, n): 
-        print("7")
-
-    def handle_8(self, option, n): 
-        print("8")
-
-    def handle_9(self, option, n): 
-        print("9")
 
 
 def clear_screen():
@@ -91,7 +60,7 @@ Probabilistic Tests:
         func = getattr(handlers, method_name, None)
         
         if func:
-            func(option, n)
+            func(int(option), int(n))
             break
         else:
             print("Invalid Selection.")
