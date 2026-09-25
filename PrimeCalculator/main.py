@@ -10,8 +10,22 @@ NOTE: Edit the main method accordingly to the algorithm that you wish to examine
       All algorithms are checked in the current version, which may cause lag for very big values of N
 """
 def main():
-    n = 100 # <--- detect primes up to here
+    print("PRIME NUMBER CALCULATOR")
+    print("-----------------------")
+    print("Welcome. Capabilities of this program are listed below:\n")
+    print("1. Find out if an integer is prime or composite.")
+    print("2. Print the list of prime integers up to a positive integer.")
+    print("3. Print the list of Mersenne numbers up to a positive integer.")
+    print("4. Exit.")
+    
+    user_input = input("\nSelection: ")
 
+    # init_primecalculator(user_input)
+
+
+def init_primecalculator(n):
+    n = 100 # <--- detect primes up to here
+    
     # print sieves results
     print(sieve_of_eratosthenes(n))
     print(sieve_of_sundaram(n))
