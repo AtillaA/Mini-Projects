@@ -4,55 +4,80 @@ from probabilistic import fermat_test, miller_rabin_test, baillie_psw_test
 
 
 """
-Detect all prime numbers up to N
-
-NOTE: Edit the main method accordingly to the algorithm that you wish to examine
-      All algorithms are checked in the current version, which may cause lag for very big values of N
+Prime Number Calculator:
+    Check primality of a given input, or list the prime numbers up to that input
 """
 def main():
-    print("PRIME NUMBER CALCULATOR")
+    print("\nPRIME NUMBER CALCULATOR")
     print("-----------------------")
     print("\nWelcome. Capabilities of this program are listed below:\n")
 
     while True:
         print("1. Find out if an integer is prime or composite.")
         print("2. Print the list of prime integers up to a positive integer.")
-        print("3. Print the list of Mersenne numbers up to a positive integer.")
-        print("4. Exit.")
+        print("3. Exit.")
 
         user_input = input("\nSelection: ").strip()
 
         # handle exit immediately
         if user_input == "4":
-            print("Exiting program.")
+            print("\nExiting program.")
             break
 
         # check out-of-bounds/non-digit inputs
-        if not user_input.isdigit() or user_input not in ["1", "2", "3"]:
-            print("Invalid input, make a valid selection.")
+        if not user_input.isdigit() or user_input not in ["1", "2"]:
+            print("\nInvalid input, make a valid selection.\n")
             continue
 
         # process valid choices
-        selection = int(user_input)
+        selection_input = int(user_input)
         
-        target_input = input("Enter the target positive integer (n): ")
+        target_input = input("\nEnter a target positive integer (n): ")
 
         if not target_input.isdigit():
-            print("Invalid number input. Returning to menu.")
+            print("\nInvalid number input, returning to main menu...\n")
             continue
             
         n = int(target_input)
 
-        if selection == 1 or selection == 2 or selection == 3:
-            init_primecalculator(selection, n)
+        if selection_input == 1 or selection_input == 2:
+            init_primecalculator(selection_input, n)
 
 
-def init_primecalculator(selection, n): 
-    return 0
+def init_primecalculator(selection, n):
+    print("\nSelect the primality test method you wish to use (note that Lucas-Lehmer test will only yield Mersenne prime(s)):")
+    print("\nSieves:")
+    print("-------")
+    print("1. Sieve of Eratosthenes")
+    print("2. Sieve of Sundaram")
+    print("3. Sieve of Atkin")
+    print("\nDeterministic Tests:")
+    print("----------------------")
+    print("4. Trial Division")
+    print("5. AKS")
+    print("6. Lucas-Lehmer")
+    #print(f"{"\033[9m"}Lucas-Lehmer{"\033[0m"}")
+    print("\nProbabilistic Tests:")
+    print("----------------------")
+    print("7. Fermat")
+    print("8. Miller-Rabin")
+    print("9. Baillie-PSW")
+    print("\n0. Back\n")
+
+    test_input = input("\nSelection: ").strip()
+
+    # handle exit immediately
+    if test_input == "0":
+        print("Returning to main menu...\n")
+        return 0
+
+    # check out-of-bounds/non-digit inputs
+    if not test_input.isdigit() or not (1 <= int(test_input) <= 9):
+        print("\nInvalid test selection input, returning to main menu...\n")
 
 
 def dummy_func():
-    n = 100
+    n = 200
 
     # print sieves results
     print(sieve_of_eratosthenes(n))
