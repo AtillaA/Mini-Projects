@@ -1,26 +1,57 @@
 from sieve import sieve_of_eratosthenes, sieve_of_sundaram, sieve_of_atkin
 from deterministic import trial_division_test, aks_test, lucas_lehmer_test
 from probabilistic import fermat_test, miller_rabin_test, baillie_psw_test
+import os
+import subprocess
+import time
+
 
 
 class TestHandlers:
-    def handle_0(self): print("0")
-    def handle_1(self): print("1")
-    def handle_2(self): print("2")
-    def handle_3(self): print("3")
-    def handle_4(self): print("4")
-    def handle_5(self): print("5")
-    def handle_6(self): print("6")
-    def handle_7(self): print("7")
-    def handle_8(self): print("8")
-    def handle_9(self): print("9")
+    def handle_1(self, option, n): 
+        print("1")
+
+    def handle_2(self, option, n): 
+        print("2")
+
+    def handle_3(self, option, n): 
+        print("3")
+
+    def handle_4(self, option, n): 
+        print("4")
+
+    def handle_5(self, option, n): 
+        print("5")
+
+    def handle_6(self, option, n): 
+        print("6")
+
+    def handle_7(self, option, n): 
+        print("7")
+
+    def handle_8(self, option, n): 
+        print("8")
+
+    def handle_9(self, option, n): 
+        print("9")
+
+
+def clear_screen():
+    """ wipes the console screen """
+    command = 'cls' if os.name == 'nt' else 'clear'
+    subprocess.run(command, shell=True)
+
+
+def pause_and_clear(seconds=1.5):
+    """ pauses execution then clears the console screen """
+    time.sleep(seconds)
+    clear_screen()
 
 
 def select_test(option, n):
     while True:
-
         test_text = """
-Select the primality test method you wish to use (note that Lucas-Lehmer test will only yield Mersenne prime(s)):
+Select the primality test method you wish to use (note that Lucas-Lehmer test will only yield Mersenne primes):
 
 Sieves:
 -------
@@ -44,8 +75,14 @@ Probabilistic Tests:
 """
         print(test_text)
         
-        handlers = MenuHandlers()
+        handlers = TestHandlers()
         selected_test_method = input("Selection (0-9): ").strip()
+
+        # exit early
+        if selected_test_method == "0":
+            print("Returning to main menu...")
+            pause_and_clear()
+            break
         
         # construct the target method name dynamically
         method_name = f"handle_{selected_test_method}"
@@ -54,10 +91,11 @@ Probabilistic Tests:
         func = getattr(handlers, method_name, None)
         
         if func:
-            func()
+            func(option, n)
             break
         else:
             print("Invalid Selection.")
+            pause_and_clear()
 
 
 def main():
@@ -77,6 +115,7 @@ Welcome. Capabilities of this program are listed below:
 """
         print(menu_text)
 
+        # 1 or 2
         selected_option = input("Selection: ").strip()
 
         # handle exit immediately
@@ -86,14 +125,18 @@ Welcome. Capabilities of this program are listed below:
         
         target_value = input("\nEnter the target value: ").strip()
 
+        # check if the inputs are numbers
         if not (selected_option.isdigit() and target_value.isdigit()):
             print("\nInvalid input, make a valid selection.")
+            pause_and_clear()
             continue
 
+        # check if the selection is valid
         if int(selected_option) == 1 or int(selected_option) == 2:
             select_test(selected_option, target_value)
         else:
             print("\nSelection does not exist. Try again.")
+            pause_and_clear()
 
     return 0
 
