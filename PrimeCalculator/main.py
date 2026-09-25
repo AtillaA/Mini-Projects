@@ -12,20 +12,48 @@ NOTE: Edit the main method accordingly to the algorithm that you wish to examine
 def main():
     print("PRIME NUMBER CALCULATOR")
     print("-----------------------")
-    print("Welcome. Capabilities of this program are listed below:\n")
-    print("1. Find out if an integer is prime or composite.")
-    print("2. Print the list of prime integers up to a positive integer.")
-    print("3. Print the list of Mersenne numbers up to a positive integer.")
-    print("4. Exit.")
-    
-    user_input = input("\nSelection: ")
+    print("\nWelcome. Capabilities of this program are listed below:\n")
 
-    # init_primecalculator(user_input)
+    while True:
+        print("1. Find out if an integer is prime or composite.")
+        print("2. Print the list of prime integers up to a positive integer.")
+        print("3. Print the list of Mersenne numbers up to a positive integer.")
+        print("4. Exit.")
+
+        user_input = input("\nSelection: ").strip()
+
+        # handle exit immediately
+        if user_input == "4":
+            print("Exiting program.")
+            break
+
+        # check out-of-bounds/non-digit inputs
+        if not user_input.isdigit() or user_input not in ["1", "2", "3"]:
+            print("Invalid input, make a valid selection.")
+            continue
+
+        # process valid choices
+        selection = int(user_input)
+        
+        target_input = input("Enter the target positive integer (n): ")
+
+        if not target_input.isdigit():
+            print("Invalid number input. Returning to menu.")
+            continue
+            
+        n = int(target_input)
+
+        if selection == 1 or selection == 2 or selection == 3:
+            init_primecalculator(selection, n)
 
 
-def init_primecalculator(n):
-    n = 100 # <--- detect primes up to here
-    
+def init_primecalculator(selection, n): 
+    return 0
+
+
+def dummy_func():
+    n = 100
+
     # print sieves results
     print(sieve_of_eratosthenes(n))
     print(sieve_of_sundaram(n))
@@ -67,9 +95,7 @@ def init_primecalculator(n):
     print(fermat_list)
     print(miller_rabin_list)
     print(baillie_psw_list)
-        
     return 0
-
 
 if __name__ == "__main__":
     main()
