@@ -46,6 +46,10 @@ Sieve of Atkin:
     Instead of marking multiples, checks the remainders of numbers modulo 60 and counts the number of integer solutions to specific quadratic equations
 """
 def sieve_of_atkin(limit):
+   # base case
+   if limit == 2:
+      return [2]
+   
    primes = [False] * (limit + 1) # assume all numbers are composite
    primes[2] = primes[3] = True # mark 2 and 3 as prime
   

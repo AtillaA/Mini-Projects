@@ -46,6 +46,7 @@ Probabilistic Tests:
         
         handlers = TestHandlers()
         selected_test_method = input("Selection (0-9): ").strip()
+        print("\n")
 
         # exit early
         if selected_test_method == "0":
