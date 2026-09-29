@@ -11,13 +11,13 @@ def clear_screen():
     subprocess.run(command, shell=True)
 
 
-def pause_and_clear(seconds=1.5):
+def pause_and_clear(seconds=1):
     """ pauses execution then clears the console screen """
     time.sleep(seconds)
     clear_screen()
 
 
-def select_test(option, n):
+def select_test(n):
     while True:
         test_text = """
 Select the primality test method you wish to use (note that Lucas-Lehmer test will only yield Mersenne primes):
@@ -61,7 +61,7 @@ Probabilistic Tests:
         func = getattr(handlers, method_name, None)
         
         if func:
-            func(int(option), int(n))
+            func(int(n))
             break
         else:
             print("Invalid Selection.")
@@ -73,40 +73,29 @@ def main():
 #############################
 ## PRIME NUMBER CALCULATOR ##
 #############################
-Welcome. Capabilities of this program are listed below:
+Welcome. This program prints the prime numbers up the input provided.
+The user must provide a target positive integer, and the method that they wish to use.
+Note that Lucas-Lehmer Primality Test will only yield the Mersenne Primes, so evaluate the output accordingly.
+Input 0 to exit the program.
 """
     print(menu_text)
 
     while True:
-        menu_text = """
-1. Find out if an integer is prime or composite.
-2. Print the list of prime integers up to a positive integer.
-3. Exit.
-"""
-        print(menu_text)
-
-        # 1 or 2
-        selected_option = input("Selection: ").strip()
-
-        # handle exit immediately
-        if selected_option == "3":
-            print("Exiting program.")
-            break
-        
         target_value = input("\nEnter the target value: ").strip()
 
-        # check if the inputs are numbers
-        if not (selected_option.isdigit() and target_value.isdigit()):
-            print("\nInvalid input, make a valid selection.")
+        # handle exit immediately
+        if target_value == "0":
+            print("Exiting program.")
+            break
+
+        # check the input
+        if not (target_value.isdigit()):
+            print("\nInvalid input. Try again.")
             pause_and_clear()
             continue
 
-        # check if the selection is valid
-        if int(selected_option) == 1 or int(selected_option) == 2:
-            select_test(selected_option, target_value)
-        else:
-            print("\nSelection does not exist. Try again.")
-            pause_and_clear()
+        pause_and_clear()
+        select_test(target_value)
 
     return 0
 
